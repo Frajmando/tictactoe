@@ -63,6 +63,9 @@ void Window::checkGameState()
     if (game.checkWin())
     {
         char winner = game.getCurrentPlayer() == 'X' ? 'O' : 'X';
+        winner == 'X' ? xWins++ : oWins++;
+        xWinLabel.setText(QString("X Wins: %1").arg(xWins));
+        oWinLabel.setText(QString("O Wins: %1").arg(oWins));
         QMessageBox::information(this, "Game Over", QString("%1 Wins!").arg(winner));
         gameOver = true;
         updateBoard();

@@ -19,6 +19,7 @@ class Window : public QWidget
     void checkGameState();
     void playerClick(int row, int col);
     void compClick();
+    void buttonState(bool state);
 
 public:
     Window();

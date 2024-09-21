@@ -24,7 +24,8 @@ Window::Window() : gameOver{false}
     connect(&resetButton, &QPushButton::clicked, [this]()
             { game.resetGame(); 
             updateBoard(); 
-            gameOver = false; });
+            gameOver = false; 
+            buttonState(true); });
 }
 
 void Window::updateBoard()
@@ -59,11 +60,12 @@ void Window::checkGameState()
 
 void Window::playerClick(int row, int col)
 {
-    if (!gameOver)
+    if (!gameOver && game.getBoardState(row, col) == ' ')
     {
         game.makeMove(row, col);
         updateBoard();
         checkGameState();
+        buttonState(false);
         if (!gameOver)
         {
             QTimer::singleShot(500, [this]()
@@ -77,4 +79,27 @@ void Window::compClick()
     game.compMove();
     updateBoard();
     checkGameState();
+    if (!gameOver)
+    {
+        buttonState(true);
+    }
+}
+
+void Window::buttonState(bool state)
+{
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if (state)
+            {
+                connect(&buttons[i][j], &QPushButton::clicked, this, [this, i, j]()
+                        { playerClick(i, j); });
+            }
+            else
+            {
+                disconnect(&buttons[i][j], &QPushButton::clicked, 0, 0);
+            }
+        }
+    }
 }

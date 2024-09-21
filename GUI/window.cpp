@@ -34,10 +34,12 @@ Window::Window() : gameOver{false}
 
 void Window::updateBoard()
 {
+    QFont buttonFont("Arial", 100, QFont::Bold);
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
+            buttons[i][j].setFont(buttonFont);
             buttons[i][j].setText(QString(game.getBoardState(i, j)));
         }
     }

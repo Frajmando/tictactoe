@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QGridLayout>
+#include <QLabel>
 
 #include "logic.h"
 
@@ -14,6 +15,10 @@ class Window : public QWidget
     QPushButton resetButton{"Reset"};
     GameLogic game;
     bool gameOver{false};
+    int xWins{0};
+    int oWins{0};
+    QLabel xWinLabel;
+    QLabel oWinLabel;
 
     void updateBoard();
     void checkGameState();

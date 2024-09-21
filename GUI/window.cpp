@@ -1,5 +1,6 @@
 #include "window.h"
 #include <QMessageBox>
+#include <QTimer>
 
 Window::Window() : gameOver{false}
 {
@@ -13,14 +14,8 @@ Window::Window() : gameOver{false}
         {
             buttons[i][j].setFixedSize(200, 200);
             gridLayout.addWidget(&buttons[i][j], i, j);
-            connect(&buttons[i][j], &QPushButton::clicked, [this, i, j]()
-                    {
-                if (!gameOver)
-                {
-                    game.makeMove(i, j);
-                    updateBoard();
-                    checkGameState();
-                } });
+            connect(&buttons[i][j], &QPushButton::clicked, this, [this, i, j]()
+                    { playerClick(i, j); });
         }
     }
 
@@ -60,4 +55,26 @@ void Window::checkGameState()
         gameOver = true;
         updateBoard();
     }
+}
+
+void Window::playerClick(int row, int col)
+{
+    if (!gameOver)
+    {
+        game.makeMove(row, col);
+        updateBoard();
+        checkGameState();
+        if (!gameOver)
+        {
+            QTimer::singleShot(500, [this]()
+                               { compClick(); });
+        }
+    }
+}
+
+void Window::compClick()
+{
+    game.compMove();
+    updateBoard();
+    checkGameState();
 }

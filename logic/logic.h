@@ -1,7 +1,7 @@
 #ifndef LOGIC_H
 #define LOGIC_H
 
-#include <array>
+#include <stdlib.h>
 
 class GameLogic
 {
@@ -13,6 +13,7 @@ public:
     char getCurrentPlayer() const;
     void resetGame();
     char getBoardState(int row, int col) const;
+    void compMove();
 
 private:
     char board[3][3];      // ' ' for empty, 'X' for X, 'O' for O

@@ -87,3 +87,19 @@ char GameLogic::getBoardState(int row, int col) const
 {
     return board[row][col];
 }
+
+void GameLogic::compMove()
+{
+    do
+    {
+        int row = rand() % 3;
+        int col = rand() % 3;
+
+        if (board[row][col] == ' ')
+        {
+            board[row][col] = getCurrentPlayer();
+            playerTurn = !playerTurn;
+            break;
+        }
+    } while (true);
+}

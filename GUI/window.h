@@ -17,6 +17,8 @@ class Window : public QWidget
 
     void updateBoard();
     void checkGameState();
+    void playerClick(int row, int col);
+    void compClick();
 
 public:
     Window();

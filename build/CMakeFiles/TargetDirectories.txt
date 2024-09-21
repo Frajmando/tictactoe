@@ -1,3 +1,0 @@
-/home/friman/Documents/github/tictactoe/build/CMakeFiles/tictactoe.dir
-/home/friman/Documents/github/tictactoe/build/CMakeFiles/edit_cache.dir
-/home/friman/Documents/github/tictactoe/build/CMakeFiles/rebuild_cache.dir
